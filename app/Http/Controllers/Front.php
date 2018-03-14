@@ -92,22 +92,26 @@ class Front extends Controller {
             $product = Product::find($product_id);
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
         }
+        
+        $id = Request::get('product_id');
+        $item = Cart::search(function ($cart, $key) use($id) {
+            return $cart->id == $id;
+         })->first();
 
         //increment the quantity
         if (Request::get('product_id') && (Request::get('increment')) == 1) {
-            $rowId = Cart::search(array('id' => Request::get('product_id')));
+            // $rowId = Cart::search(array('id' => Request::get('product_id')));
+            // $item = Cart::get($rowId[0]);
 
-            $item = Cart::get($rowId[0]);
-
-            Cart::update($rowId[0], $item->qty + 1);
+            Cart::update($item->rowId, $item->qty + 1);
         }
 
         //decrease the quantity
         if (Request::get('product_id') && (Request::get('decrease')) == 1) {
-            $rowId = Cart::search(array('id' => Request::get('product_id')));
-            $item = Cart::get($rowId[0]);
+            // $rowId = Cart::search(array('id' => Request::get('product_id')));
+            // $item = Cart::get($rowId[0]);
 
-            Cart::update($rowId[0], $item->qty - 1);
+            Cart::update($item->rowId, $item->qty - 1);
         }
 
 

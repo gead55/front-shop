@@ -35,6 +35,19 @@
                         </div><!--/sign up form-->
                     </div>
                 </div>
+                <div class="row">
+                    <hr>
+                    <div class="form-group">
+                    <form method="POST">
+                        {!! csrf_field() !!}
+                        <div class="col-md-6 col-md-offset-4">
+                            <a href="{{ url('/auth0/github') }}" class="btn btn-github"><i class="fa fa-github"></i> Github</a>
+                            <a href="{{ url('/auth0/twitter') }}" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+                            <a href="{{ url('/auth0/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+                        </div>
+                    </form>
+                    </div>
+                </div>
             </div>
         </section><!--/form-->
 @endsection

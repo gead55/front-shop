@@ -10,6 +10,17 @@
   | and give it the controller to call when that URI is requested.
   |
  */
+
+Auth::routes();
+
+// Authentication routes...
+Route::get('auth/login', 'Front@login');
+Route::post('auth/login', 'Front@authenticate');
+Route::get('auth/logout', 'Front@logout');
+
+Route::get('auth0/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth0/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/', 'Front@index');
 Route::get('/products', 'Front@products');
 Route::get('/products/details/{id}', 'Front@product_details');
@@ -18,10 +29,6 @@ Route::get('/products/brands/{name}/{category?}', 'Front@product_brands');
 Route::get('/blog', 'Front@blog');
 Route::get('/blog/post/{id}', 'Front@blog_post');
 Route::get('/contact-us', 'Front@contact_us');
-// Authentication routes...
-Route::get('auth/login', 'Front@login');
-Route::post('auth/login', 'Front@authenticate');
-Route::get('auth/logout', 'Front@logout');
 
 // Registration routes...
 Route::post('/register', 'Front@register');
@@ -92,6 +99,3 @@ Route::get('blade', function () {
     $drinks = array('Vodka', 'Gin', 'Brandy');
     return view('page', array('name' => 'The Raven', 'day' => 'Friday', 'drinks' => $drinks));
 });
-
-
-
