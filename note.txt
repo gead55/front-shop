@@ -2,5 +2,9 @@ refferance
 
 http://www.tutorials.kode-blog.com/laravel-5-tutorial
 
+login-social
 https://scotch.io/tutorials/laravel-social-authentication-with-socialite
 https://medium.com/justlaravel/laravel-social-login-using-socialite-45305c7ddc00
+
+Error
+login by email conflict with fb g+
