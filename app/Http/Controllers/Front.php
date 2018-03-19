@@ -23,7 +23,7 @@ class Front extends Controller {
     public function __construct() {
         $this->brands = Brand::all(array('name'));
         $this->categories = Category::all(array('name'));
-        $this->products = Product::all(array('id', 'name', 'price'));
+        $this->products = Product::all(array('id', 'product_code', 'price'));
     }
 
     public function index() {
@@ -36,7 +36,7 @@ class Front extends Controller {
 
     public function product_details($id) {
         $product = Product::find($id);
-        return view('product_details', array('product' => $product, 'title' => $product->name, 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+        return view('product_details', array('product' => $product, 'title' => $product->product_code, 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
     }
 
     public function product_categories($name) {
@@ -90,7 +90,7 @@ class Front extends Controller {
         if (Request::isMethod('post')) {
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
+            Cart::add(array('id' => $product_id, 'name' => $product->product_code, 'qty' => 1, 'price' => $product->price));
         }
         
         $id = Request::get('product_id');
