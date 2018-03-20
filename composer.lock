@@ -320,16 +320,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.50",
+            "version": "v0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/google-api-php-client-services.git",
-                "reference": "3e792254734e4444dd8a594e927926f28de2e609"
+                "reference": "c3d936baf3eacc002f6183530355fe4fba19b0fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/3e792254734e4444dd8a594e927926f28de2e609",
-                "reference": "3e792254734e4444dd8a594e927926f28de2e609",
+                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/c3d936baf3eacc002f6183530355fe4fba19b0fb",
+                "reference": "c3d936baf3eacc002f6183530355fe4fba19b0fb",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-03-10 00:23:06"
+            "time": "2018-03-18 00:23:20"
         },
         {
             "name": "google/auth",
@@ -2792,7 +2792,7 @@
             ],
             "authors": [
                 {
-                    "name": "Francois Zaninotto"
+                    "name": "François Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",

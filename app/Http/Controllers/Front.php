@@ -19,6 +19,7 @@ class Front extends Controller {
     var $products;
     var $title;
     var $description;
+    var $data;
 
     public function __construct() {
         $this->brands = Brand::all(array('name'));
@@ -27,7 +28,14 @@ class Front extends Controller {
     }
 
     public function index() {
-        return view('home', array('title' => 'Welcome', 'description' => '', 'page' => 'home', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+        $this->data['title'] = 'Welcome';
+        $this->data['description'] = '';
+        $this->data['page'] = 'home';
+        $this->data['brands'] = $this->brands;
+        $this->data['categories'] = $this->categories;
+        $this->data['products'] = $this->products;
+
+        return view('home', $this->data);
     }
 
     public function products() {
