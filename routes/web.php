@@ -99,3 +99,7 @@ Route::get('blade', function () {
     $drinks = array('Vodka', 'Gin', 'Brandy');
     return view('page', array('name' => 'The Raven', 'day' => 'Friday', 'drinks' => $drinks));
 });
+
+Route::get('welcome', function () {
+    return view('welcome');
+});

@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Product;
 Use App\User;
+Use App\FrontModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -34,6 +35,10 @@ class Front extends Controller {
         $this->data['brands'] = $this->brands;
         $this->data['categories'] = $this->categories;
         $this->data['products'] = $this->products;
+        
+        $features = new FrontModel();
+
+        $this->data['features'] = $features->getFeature();
 
         return view('home', $this->data);
     }
