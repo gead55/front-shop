@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Product;
-
+// use App\Product;
+use DB;
 class FrontModel extends BaseModel
 {
     // public function __construct() {
@@ -12,10 +12,13 @@ class FrontModel extends BaseModel
 
     public function getFeature()
     {
-	    $product = new Product();
-
-	    $data = $product->all();
-
+	    // $product = new Product();
+	    // $data = $product->all();
+		$data = DB::table('products')
+                // ->offset(10)
+                ->limit(3)
+                ->orderBy('id', 'desc')
+                ->get();
 	    return $data;
     }
 }
