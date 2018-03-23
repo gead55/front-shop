@@ -1,16 +1,45 @@
-
+@php
+$img_url = Config::get('constants.IMG_URL')
+@endphp
                 <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-                            <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-                            <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-                            <li><a href="#kids" data-toggle="tab">Kids</a></li>
-                            <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+                        @foreach ($categories as $key => $category)
+                            <li @if($key == 0) class="active" @endif><a href="#{{$category->id}}" data-toggle="tab">{{$category->name}}</a></li>
+                            @php $iCate[$key] = $category->name; @endphp
+                        @endforeach
                         </ul>
                     </div>
+                        @foreach ($category_tabs as $ckey => $ctabs)
+                        <?php 
+                        // var_dump($ctabs[$ckey]('category_id'));
+                        // die();
+                        ?>
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="6" >
+                            @foreach ($ctabs as $key => $itabs)
+                                @php                     
+                                    $images = json_decode($itabs->filename,true)
+                                @endphp
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{$img_url}}{{$itabs->pathfile}}{{$images[0]}}" alt="" />
+                                            <h2>${{$itabs->price}}</h2>
+                                            <p>{{$itabs->product_name}}</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            </div>
+                        </div>
+                        @endforeach
                     <div class="tab-content">
-                        <div class="tab-pane fade active in" id="tshirt" >
+                        <div class="tab-pane fade" id="" >
                             <div class="col-sm-3">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
@@ -65,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="blazers" >
+                        <div class="tab-pane fade active in" id="blazers" >
                             <div class="col-sm-3">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">

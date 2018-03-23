@@ -24,7 +24,7 @@ class Front extends Controller {
 
     public function __construct() {
         $this->brands = Brand::all(array('name'));
-        $this->categories = Category::all(array('name'));
+        $this->categories = Category::all(array('id','name'));
         $this->products = Product::all(array('id', 'product_code', 'price'));
     }
 
@@ -37,8 +37,10 @@ class Front extends Controller {
         $this->data['products'] = $this->products;
         
         $features = new FrontModel();
+        $category_tabs = new FrontModel();
 
         $this->data['features'] = $features->getFeature();
+        $this->data['category_tabs'] = $category_tabs->getcategoryTabs();
 
         return view('home', $this->data);
     }

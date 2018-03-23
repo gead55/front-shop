@@ -1,12 +1,11 @@
-
+@php
+$img_url = Config::get('constants.IMG_URL')
+@endphp
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
                     @foreach($features as $item)
                         @php                     
                         $images = json_decode($item->filename,true)
-                        @endphp
-                        @php
-                        $img_url = Config::get('constants.IMG_URL')
                         @endphp
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
