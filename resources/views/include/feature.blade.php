@@ -10,16 +10,22 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{$img_url}}{{$item->pathfile}}{{$images[0]}}" alt="" />
-                                    <h2>{{$item->price}}</h2>
+                                    <h2>${{$item->price}}</h2>
                                     <p>{{$item->product_name}}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <img src="{{$img_url}}{{$item->pathfile}}{{$images[1]}}" alt="" />
-                                        <h2>{{$item->price}}</h2>
-                                        <p>{{$item->product_name}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <h2>${{$item->price}}</h2>
+                                        <p>${{$item->product_name}}</p>
+                                        <form method="POST" action="{{url('cart')}}">
+                                            <input type="hidden" name="product_id" value="{{$item->id}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-fefault add-to-cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Add to cart
+                                            </button>
+                                        </form>
+                                        <a href='{{url("products/details/$item->id")}}' class="btn btn-default add-to-cart"><i class="fa fa-info"></i>View Details</a>
                                     </div>
                                 </div>
                             </div>
