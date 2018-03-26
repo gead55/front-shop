@@ -17,42 +17,10 @@
             </div>
 
             <div class="col-sm-9 padding-right">
-
-@php
-$img_url = Config::get('constants.IMG_URL')
-@endphp
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">{{$description}} Items</h2>
                     @foreach($brand_pages as $item)
-                        @php                     
-                        $images = json_decode($item->filename,true)
-                        @endphp
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{$img_url}}{{$item->pathfile}}{{$images[0]}}" alt="" />
-                                    <h2>{{$item->price}}</h2>
-                                    <p>{{$item->product_name}}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <img src="{{$img_url}}{{$item->pathfile}}{{$images[1]}}" alt="" />
-                                        <h2>{{$item->price}}</h2>
-                                        <p>{{$item->product_name}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        @include('include.items')
                     @endforeach
                     <div class="text-center">{!! $brand_pages->render() !!}</div>
             </div>

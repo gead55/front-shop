@@ -10,7 +10,7 @@ class FrontModel extends BaseModel
 
     // }
 
-    public static function getFeature()
+    public function getFeature()
     {
 	    // $product = new Product();
 	    // $data = $product->all();
@@ -48,4 +48,30 @@ class FrontModel extends BaseModel
 
 	    return $data;
     }
+
+    public function getProducts()
+    {
+        $data = DB::table('products')
+                ->orderBy('created_at', 'desc')
+                ->paginate();
+        return $data;
+    }
+
+    public function getProductsById($id)
+    {
+        $data = DB::table('products')
+                ->where('category_id','=', $id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(3);
+        return $data;
+    } 
+
+    public function getBrands($id)
+    {
+        $data = DB::table('products')
+                ->where('brand_id','=', $id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(3);
+        return $data;
+    }   
 }

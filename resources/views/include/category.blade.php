@@ -4,16 +4,15 @@
                         <ul class="nav nav-tabs">
                         @foreach ($categories as $key => $category)
                             <li @if($key == 0) class="active" @endif><a href="#{{$category->id}}" data-toggle="tab">{{$category->name}}</a></li>
-                            @php $iCate[$key] = $category->name; @endphp
                         @endforeach
                         </ul>
                     </div>
                     <div class="tab-content">
+ 
                     @foreach ($category_tabs as $key => $ctabs)
-                        <div class="tab-pane fade in" id="{{$ctabs['cate_id']}}" >
-                        <?php var_dump($ctabs['obj_cate']); ?>
-                        @if($ctabs['obj_cate'] == '')
-                            <div> No Data!</div>
+                        <div class="tab-pane fade in @if($key == 0) active @endif" id="{{$ctabs['cate_id']}}" >
+                        @if(!sizeof($ctabs['obj_cate']))
+                            <div class="text-center"> No Data!</div>
                         @else
                             @foreach ($ctabs['obj_cate'] as $key => $itabs)
                                 @php                     
