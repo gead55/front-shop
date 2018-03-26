@@ -23,19 +23,25 @@ class Front extends Controller {
     var $data;
 
     public function __construct() {
-        $this->brands = Brand::all(array('name'));
+        $this->brands = Brand::all(array('id','name'));
         $this->categories = Category::all(array('id','name'));
         $this->products = Product::all(array('id', 'product_code', 'price'));
     }
 
-    public function index() {
-        $this->data['title'] = 'Welcome';
-        $this->data['description'] = '';
-        $this->data['page'] = 'home';
+    protected function info(){
+
         $this->data['brands'] = $this->brands;
         $this->data['categories'] = $this->categories;
         $this->data['products'] = $this->products;
-        
+
+    }
+
+    public function index() {
+
+        $this->data['title'] = 'Welcome';
+        $this->data['description'] = '';
+        $this->data['page'] = 'home';  
+        $this->info();
         $features = new FrontModel();
         $category_tabs = new FrontModel();
 
@@ -45,8 +51,20 @@ class Front extends Controller {
         return view('home', $this->data);
     }
 
+
+
     public function products() {
-        return view('products', array('title' => 'Products Listing', 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+
+        $this->data['title'] = 'Products Listing';
+        $this->data['description'] = '';
+        $this->data['page'] = 'products';        
+        $this->info();
+
+        $front = new FrontModel();
+
+        $this->data['product_pages'] = $front->getProducts();
+
+        return view('products', $this->data);
     }
 
     public function product_details($id) {
@@ -54,12 +72,32 @@ class Front extends Controller {
         return view('product_details', array('product' => $product, 'title' => $product->product_code, 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
     }
 
-    public function product_categories($name) {
-        return view('products', array('title' => 'Welcome', 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+    public function product_categories($id) {
+
+        $this->data['title'] = 'Welcome';
+        $this->data['description'] = Category::find($id)->name;
+        $this->data['page'] = 'products';        
+        $this->info();
+
+        $front = new FrontModel();
+
+        $this->data['product_pages'] = $front->getProductsById($id);
+
+        return view('p_cate', $this->data);
     }
 
-    public function product_brands($name, $category = null) {
-        return view('products', array('title' => 'Welcome', 'description' => '', 'page' => 'products', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+    public function product_brands($id) {
+
+        $this->data['title'] = 'Welcome';
+        $this->data['description'] = Brand::find($id)->name;
+        $this->data['page'] = 'products';        
+        $this->info();
+
+        $front = new FrontModel();
+
+        $this->data['brand_pages'] = $front->getBrands($id);
+
+        return view('p_brand', $this->data);
     }
 
     public function blog() {

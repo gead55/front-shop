@@ -22,8 +22,8 @@
 $img_url = Config::get('constants.IMG_URL')
 @endphp
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
-                    @foreach($product_pages as $item)
+                    <h2 class="title text-center">{{$description}} Items</h2>
+                    @foreach($brand_pages as $item)
                         @php                     
                         $images = json_decode($item->filename,true)
                         @endphp
@@ -54,7 +54,7 @@ $img_url = Config::get('constants.IMG_URL')
                         </div>
                     </div>
                     @endforeach
-                    <div class="text-center">{!! $product_pages->render() !!}</div>
+                    <div class="text-center">{!! $brand_pages->render() !!}</div>
             </div>
                 <!-- product_pages -->
             </div>

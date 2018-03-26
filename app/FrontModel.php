@@ -33,7 +33,32 @@ class FrontModel extends BaseModel
                          ->limit(2)
                          ->get();
             }
-
         return $all_tab;
     }
+
+    public function getProducts()
+    {
+        $data = DB::table('products')
+                ->orderBy('created_at', 'desc')
+                ->paginate();
+        return $data;
+    }
+
+    public function getProductsById($id)
+    {
+        $data = DB::table('products')
+                ->where('category_id','=', $id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(3);
+        return $data;
+    } 
+
+    public function getBrands($id)
+    {
+        $data = DB::table('products')
+                ->where('brand_id','=', $id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(3);
+        return $data;
+    }   
 }
