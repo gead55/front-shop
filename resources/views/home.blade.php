@@ -3,7 +3,9 @@
 @section('content')       
 
 @include('include.slider')
-
+<?php
+    $img_url = Config('constants.IMG_URL')
+?>
 <section>
     <div class="container">
         <div class="row">

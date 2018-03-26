@@ -10,7 +10,7 @@ class FrontModel extends BaseModel
 
     // }
 
-    public function getFeature()
+    public static function getFeature()
     {
 	    // $product = new Product();
 	    // $data = $product->all();
@@ -23,17 +23,29 @@ class FrontModel extends BaseModel
 	    return $data;
     }
 
-    public function getcategoryTabs(){
+    public function getCategoryTabs(){
 
         $category = DB::table('categories')->select('id')->get();
         $all_tab = [];
             foreach ($category as $key => $value) {
                 $all_tab[$key] = DB::table('products')
                          ->where('category_id', '=', $value->id)
-                         ->limit(2)
+                         ->limit(4)
                          ->get();
+                $all_tab[$key] =array( 'cate_id' => $value->id , 'obj_cate' => $all_tab[$key] );
             }
 
         return $all_tab;
+    }
+
+    public function getRecommend()
+    {
+		$data = DB::table('products')
+                // ->offset(10)
+                ->limit(12)
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+	    return $data;
     }
 }

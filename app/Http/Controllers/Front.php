@@ -36,11 +36,11 @@ class Front extends Controller {
         $this->data['categories'] = $this->categories;
         $this->data['products'] = $this->products;
         
-        $features = new FrontModel();
-        $category_tabs = new FrontModel();
+        $front = new FrontModel();
 
-        $this->data['features'] = $features->getFeature();
-        $this->data['category_tabs'] = $category_tabs->getcategoryTabs();
+        $this->data['features'] = $front->getFeature();
+        $this->data['category_tabs'] = $front->getCategoryTabs();
+        $this->data['recommends'] = $front->getRecommend();
 
         return view('home', $this->data);
     }
