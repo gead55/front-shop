@@ -12,7 +12,7 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>${{$item->price}}</h2>
-                                        <p>${{$item->product_name}}</p>
+                                        <!-- <p>${{$item->product_name}}</p> -->
                                         <form method="POST" action="{{url('cart')}}">
                                             <input type="hidden" name="product_id" value="{{$item->id}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

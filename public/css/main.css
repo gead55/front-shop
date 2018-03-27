@@ -891,7 +891,7 @@ h2.title {
 }
 
 .product-overlay {
-  background:#FE980F;
+  /*background:#FE980F;*/
   top: 0;
   display: none;
   height: 0;
@@ -899,14 +899,13 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:0.2;
+  opacity:;
 }
 
 .single-products:hover .product-overlay {
   display:block;
   height:100%;
 }
-
 
 .product-overlay .overlay-content {
   bottom: 0;
@@ -915,6 +914,12 @@ h2.title {
   text-align: center;
   width: 100%;
 }
+
+/*
+.product-overlay .overlay-content h2{
+  color: #FE980F;
+}
+*/
 
 .product-overlay .add-to-cart {
   background:#fff;
@@ -969,6 +974,7 @@ h2.title {
 .add-to-cart:hover {
   background: #FE980F;
   color: #FFFFFF;
+  border: 1px solid #FE980F;
 }
 
 .choose {

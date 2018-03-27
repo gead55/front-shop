@@ -2,12 +2,18 @@
 
 namespace App;
 
-use App\Product;
+// use App\Brand;
+// use App\Product;
 use DB;
 class FrontModel extends BaseModel
 {
     // public function __construct() {
-
+    //     $stores = Brand::with('products')->get();
+    //     foreach ($stores as $store) {
+    //         $itemCount = $store->products()->count();
+    //         echo $store->id.",".$store->name.",",$itemCount;
+    //     }
+    //     dd($stores);
     // }
 
     public function getFeature()
@@ -16,9 +22,8 @@ class FrontModel extends BaseModel
 	    // $data = $product->all();
 		$data = DB::table('products')
                 // ->offset(10)
-                ->limit(3)
                 ->orderBy('id', 'desc')
-                ->get();
+                ->paginate(6);
 
 	    return $data;
     }

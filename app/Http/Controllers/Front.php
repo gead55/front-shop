@@ -23,7 +23,8 @@ class Front extends Controller {
     var $data;
 
     public function __construct() {
-        $this->brands = Brand::all(array('id','name'));
+        // $this->brands = Brand::all(array('id','name'));
+        $this->brands = Brand::with('products')->get();
         $this->categories = Category::all(array('id','name'));
         $this->products = Product::all(array('id', 'product_code', 'price'));
     }
